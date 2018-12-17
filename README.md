@@ -275,6 +275,26 @@ private static List<String> validate(Object dto, Class<?>... groups) {
 }
 ```
 
+## 校验信息配置文件
+
++ 概述
+
+  ​	校验过程中产生的各种错误信息可以统一在`resources/ValidationMessage.properties`文件中进行配置，然后在指定校验注解的`message`属性时，可以通过`{}`来引用配置文件中的错误信息
+
++ demo
+
+  + ValidationMessage.properties
+
+    ```properties
+    auth.RegisterFormDto.username=2001::格式错误
+    ```
+
+  + 实体类
+
+    ```java
+    @Pattern(regexp = ValidationUtil.usernameRegExp,message = "{auth.RegisterFormDto.username}")
+    private String username;
+    ```
 
 
 
